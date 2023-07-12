@@ -29,9 +29,10 @@ type
     btnBackSpace: TButton;
     procedure ControlAction1Excute(Sender: TObject);
     procedure btnBackSpaceClick(Sender: TObject);
+    procedure btnEnterClick(Sender: TObject);
   private
     { Private declarations }
-    operador_1, operadorr_2, operacion : String;
+    operador_1, operador_2, operacion : String;
   public
     { Public declarations }
   end;
@@ -50,6 +51,32 @@ begin
    edtDisplay.Text := copy(edtDisplay.Text, 1, length(edtDisplay.Text)-1);
    if edtDisplay.Text = '' then
    edtDisplay.Text := '0';
+end;
+
+procedure TfPrincipal.btnEnterClick(Sender: TObject);
+var
+  captionText : String;
+begin
+  captionText := TButton(Sender).Caption;
+  if captionText = 'Enter' then
+        begin
+            operador_2 := edtDisplay.Text;
+            if operacion = '+' then
+              edtDisplay.Text := FloatToStr(StrToFloat(operador_1) + StrToFloat(operador_2))
+            else
+              begin
+               if operacion = '-' then
+                edtDisplay.Text := FloatToStr(StrToFloat(operador_1) - StrToFloat(operador_2))
+               else
+                if operacion = '*' then
+                edtDisplay.Text := FloatToStr(StrToFloat(operador_1) * StrToFloat(operador_2))
+                else
+                  if operacion = '/' then
+                    edtDisplay.Text := FloatToStr(StrToFloat(operador_1) / StrToFloat(operador_2))
+
+              end;
+
+        end;
 end;
 
 procedure TfPrincipal.ControlAction1Excute(Sender: TObject);
@@ -81,8 +108,7 @@ begin
       end;
 
     end;
-
-    operador_1 := edtDisplay.Text;
+        operador_1 := edtDisplay.Text;
     operacion := captionText;
     edtDisplay.Text := '';
   end;

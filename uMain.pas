@@ -27,40 +27,64 @@ type
     btn3: TButton;
     btnEnter: TButton;
     btnBackSpace: TButton;
-    procedure ControlAction1Execute(Sender: TObject);
-    procedure btn7Click(Sender: TObject);
+    procedure ControlAction1Excute(Sender: TObject);
+    procedure btnBackSpaceClick(Sender: TObject);
   private
     { Private declarations }
+    operador_1, operadorr_2, operacion : String;
   public
     { Public declarations }
   end;
 
 var
   fPrincipal: TfPrincipal;
+//variables globales que se exportan a todo el proyecto
 
 implementation
 
 {$R *.dfm}
 
-procedure TfPrincipal.btn7Click(Sender: TObject);
+
+procedure TfPrincipal.btnBackSpaceClick(Sender: TObject);
 begin
-  if edtDisplay.Text = '0' then
-    edtDisplay.Text := '7'
-  else
-    edtDisplay.Text :=  edtDisplay.Text + '7';
+   edtDisplay.Text := copy(edtDisplay.Text, 1, length(edtDisplay.Text)-1);
+   if edtDisplay.Text = '' then
+   edtDisplay.Text := '0';
 end;
 
-procedure TfPrincipal.ControlAction1Execute(Sender: TObject);
+procedure TfPrincipal.ControlAction1Excute(Sender: TObject);
 var
   tag : integer;
   captionText : string;
 begin
   tag := TButton(Sender).tag;
   captionText := TButton(Sender).Caption;
-  edtDisplay.Text := '';
-  if (tag > -1) then
-    edtDisplay.Text := IntToStr(tag)
+
+
+  if (tag > -1) then /// es un boton numerico
+  begin
+    if edtDisplay.Text = '0' then
+      edtDisplay.Text := IntToStr(tag)
+    else
+      edtDisplay.Text :=  edtDisplay.Text + IntToStr(tag);
+  end
   else
-    edtDisplay.Text := 'Operacion';
+  begin
+    if captionText = '.' then
+    begin
+      if (pos('.', edtDisplay.Text) > 0) then
+      exit
+      else
+      begin
+        edtDisplay.Text :=  edtDisplay.Text + '.';
+        exit;
+      end;
+
+    end;
+
+    operador_1 := edtDisplay.Text;
+    operacion := captionText;
+    edtDisplay.Text := '';
+  end;
 end;
 end.

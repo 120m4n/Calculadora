@@ -300,7 +300,7 @@ object fPrincipal: TfPrincipal
     Font.Style = []
     ParentFont = False
     TabOrder = 17
-    OnClick = ControlAction1Excute
+    OnClick = btnEnterClick
   end
   object btnBackSpace: TButton
     Tag = -1

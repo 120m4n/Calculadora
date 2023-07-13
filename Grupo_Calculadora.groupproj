@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{B969DCE3-7465-44B2-9C59-14C5C0EB73B5}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="calculadora.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="dllCalculadora.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="dllManager\Manager.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="NumberShuffleGame\NumberShuffleGame.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="calculadora">
+        <MSBuild Projects="calculadora.dproj"/>
+    </Target>
+    <Target Name="calculadora:Clean">
+        <MSBuild Projects="calculadora.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="calculadora:Make">
+        <MSBuild Projects="calculadora.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="dllCalculadora">
+        <MSBuild Projects="dllCalculadora.dproj"/>
+    </Target>
+    <Target Name="dllCalculadora:Clean">
+        <MSBuild Projects="dllCalculadora.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dllCalculadora:Make">
+        <MSBuild Projects="dllCalculadora.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Manager">
+        <MSBuild Projects="dllManager\Manager.dproj"/>
+    </Target>
+    <Target Name="Manager:Clean">
+        <MSBuild Projects="dllManager\Manager.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Manager:Make">
+        <MSBuild Projects="dllManager\Manager.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="NumberShuffleGame">
+        <MSBuild Projects="NumberShuffleGame\NumberShuffleGame.dproj"/>
+    </Target>
+    <Target Name="NumberShuffleGame:Clean">
+        <MSBuild Projects="NumberShuffleGame\NumberShuffleGame.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="NumberShuffleGame:Make">
+        <MSBuild Projects="NumberShuffleGame\NumberShuffleGame.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="calculadora;dllCalculadora;Manager;NumberShuffleGame"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="calculadora:Clean;dllCalculadora:Clean;Manager:Clean;NumberShuffleGame:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="calculadora:Make;dllCalculadora:Make;Manager:Make;NumberShuffleGame:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

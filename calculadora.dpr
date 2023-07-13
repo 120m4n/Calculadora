@@ -2,7 +2,8 @@ program calculadora;
 
 uses
   Vcl.Forms,
-  uMain in 'uMain.pas' {fPrincipal};
+  uMain in 'uMain.pas' {fPrincipal},
+  uFunciones in 'uFunciones.pas';
 
 {$R *.res}
 

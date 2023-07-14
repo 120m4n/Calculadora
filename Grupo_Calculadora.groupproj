@@ -15,6 +15,12 @@
         <Projects Include="NumberShuffleGame\NumberShuffleGame.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="SharedDAta\SharedData.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="SharedDAta\MainApp.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,14 +65,32 @@
     <Target Name="NumberShuffleGame:Make">
         <MSBuild Projects="NumberShuffleGame\NumberShuffleGame.dproj" Targets="Make"/>
     </Target>
+    <Target Name="SharedData">
+        <MSBuild Projects="SharedDAta\SharedData.dproj"/>
+    </Target>
+    <Target Name="SharedData:Clean">
+        <MSBuild Projects="SharedDAta\SharedData.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SharedData:Make">
+        <MSBuild Projects="SharedDAta\SharedData.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MainApp">
+        <MSBuild Projects="SharedDAta\MainApp.dproj"/>
+    </Target>
+    <Target Name="MainApp:Clean">
+        <MSBuild Projects="SharedDAta\MainApp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MainApp:Make">
+        <MSBuild Projects="SharedDAta\MainApp.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="calculadora;dllCalculadora;Manager;NumberShuffleGame"/>
+        <CallTarget Targets="calculadora;dllCalculadora;Manager;NumberShuffleGame;SharedData;MainApp"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="calculadora:Clean;dllCalculadora:Clean;Manager:Clean;NumberShuffleGame:Clean"/>
+        <CallTarget Targets="calculadora:Clean;dllCalculadora:Clean;Manager:Clean;NumberShuffleGame:Clean;SharedData:Clean;MainApp:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="calculadora:Make;dllCalculadora:Make;Manager:Make;NumberShuffleGame:Make"/>
+        <CallTarget Targets="calculadora:Make;dllCalculadora:Make;Manager:Make;NumberShuffleGame:Make;SharedData:Make;MainApp:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
